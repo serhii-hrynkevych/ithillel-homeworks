@@ -1,0 +1,7 @@
+/*
+   It is my first task
+*/
+
+task hello << {
+   println 'tutorialspoint'
+}
