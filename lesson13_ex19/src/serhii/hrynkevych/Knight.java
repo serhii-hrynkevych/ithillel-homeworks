@@ -6,7 +6,9 @@ public class Knight extends Character{
 //        setWeapon(new BowAndArrowBehavior());
     }
 
-    public void display() {
+    @Override
+    public void fight() {
         System.out.print("Ход рыцаря - ");
+        super.fight();
     }
 }

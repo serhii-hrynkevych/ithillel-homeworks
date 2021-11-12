@@ -14,6 +14,4 @@ public abstract class Character {
         this.weapon = w;
     }
 
-    public abstract void display();
-
 }

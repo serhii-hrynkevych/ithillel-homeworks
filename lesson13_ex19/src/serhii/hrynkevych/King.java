@@ -6,7 +6,9 @@ public class King extends Character{
 //        setWeapon(new SwordBehavior());
     }
 
-    public void display() {
+    @Override
+    public void fight() {
         System.out.print("Ход короля - ");
+        super.fight();
     }
 }

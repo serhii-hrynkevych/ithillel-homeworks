@@ -6,7 +6,9 @@ public class Troll extends Character {
 //        setWeapon(new AxeBehavior());
     }
 
-    public void display() {
+    @Override
+    public void fight() {
         System.out.print("Ход тролля - ");
+        super.fight();
     }
 }

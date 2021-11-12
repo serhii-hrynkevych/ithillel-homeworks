@@ -17,13 +17,9 @@ public class Main {
             queen.setWeapon(weaponBehavior(numberWeaponBehavior[1]));
             knight.setWeapon(weaponBehavior(numberWeaponBehavior[2]));
             troll.setWeapon(weaponBehavior(numberWeaponBehavior[3]));
-            king.display();
             king.fight();
-            queen.display();
             queen.fight();
-            knight.display();
             knight.fight();
-            troll.display();
             troll.fight();
 
             System.out.println("Продолжаем игру? (y/n)");

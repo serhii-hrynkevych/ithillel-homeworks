@@ -6,7 +6,9 @@ public class Queen extends Character{
 //        setWeapon(new KnifeBehavior());
     }
 
-    public void display() {
+    @Override
+    public void fight() {
         System.out.print("Ход короевы - ");
+        super.fight();
     }
 }
