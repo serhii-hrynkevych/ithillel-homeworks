@@ -1,0 +1,27 @@
+plugins {
+    id 'java'
+}
+
+group 'serhii.hrynkevych'
+version '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation group: 'com.rabbitmq', name: 'amqp-client', version: '5.13.1'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    testImplementation group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.32'
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compileClasspath.collect {it.getName()}.join(''),
+                'Main-Class': 'Recv'
+        )
+    }
+}
