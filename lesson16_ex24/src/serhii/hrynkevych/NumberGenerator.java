@@ -17,27 +17,27 @@ public class NumberGenerator {
     }
 
     public List<Integer> generateList() {
-        List<Integer> listArray = new ArrayList<>();
+        List<Integer> myListArray = new ArrayList<>();
         for (int i = 0; i < this.numberOfElements; i++) {
-            listArray.add(randomNumber());
+            myListArray.add(randomNumber());
         }
-        return listArray;
+        return myListArray;
     }
 
     public Set<Integer> generateSet() {
-        Set<Integer> listSet = new HashSet<>();
-        if (this.numberOfElements > (Math.abs(this.minNumber) + Math.abs(this.maxNumber) + 1)) {
+        if (this.numberOfElements > this.maxNumber - this.minNumber + 1) {
             throw new UnsupportedOperationException();
         }
+        Set<Integer> mySet = new HashSet<>();
         int addedNumber = randomNumber();
         for (int i = 0; i < this.numberOfElements; i++) {
             if (addedNumber > this.maxNumber) {
                 addedNumber = this.minNumber;
             }
-            listSet.add(addedNumber);
+            mySet.add(addedNumber);
             addedNumber += 1;
         }
-        return listSet;
+        return mySet;
     }
 
     private int randomNumber() {
