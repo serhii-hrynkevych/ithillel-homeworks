@@ -12,8 +12,8 @@ public class Main {
         System.out.print("Введите желаемое кол-во цветов в букете: ");
         int numberOfFlowers = scanner.nextInt();
         int totalCost = 0;
-        Flowers[] bouquet = new Flowers[numberOfFlowers];
-        List<Flowers> flowersList = new ArrayList<>();
+        Flower[] bouquet = new Flower[numberOfFlowers];
+        List<Flower> flowersList = new ArrayList<>();
         for (int i = 0; i < numberOfFlowers; i++) {
             bouquet[i] = getRandomFlower();
             flowersList.add(getRandomFlower());
@@ -35,25 +35,25 @@ public class Main {
             System.out.println(flowersList.get(i));
         }
 
-        for (Flowers flowers : flowersList) {
-            int price = flowers.getPrice();
+        for (Flower flower : flowersList) {
+            int price = flower.getPrice();
             totalCost += price;
         }
 
         System.out.println("Стоимость букета - " + totalCost);
     }
 
-    public static Flowers getRandomFlower() {
+    public static Flower getRandomFlower() {
         int randomNumber = (int) (Math.random() * 3);
         switch (randomNumber) {
             case 0:
-                return Flowers.ROSE;
+                return new Rose(Flowers.ROSE.getDescription(), Flowers.ROSE.getPrice());
             case 1:
-                return Flowers.CARNATION;
+                return new Carnation(Flowers.CARNATION.getDescription(), Flowers.CARNATION.getPrice());
             case 2:
-                return Flowers.TULIP;
+                return new Tulip(Flowers.TULIP.getDescription(), Flowers.TULIP.getPrice());
             case 3:
-                return Flowers.ASTER;
+                return new Aster(Flowers.ASTER.getDescription(), Flowers.ASTER.getPrice());
         }
         return null;
     }
