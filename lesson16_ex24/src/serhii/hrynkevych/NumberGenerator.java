@@ -29,13 +29,12 @@ public class NumberGenerator {
             throw new UnsupportedOperationException();
         }
         Set<Integer> mySet = new HashSet<>();
-        int addedNumber = randomNumber();
-        for (int i = 0; i < this.numberOfElements; i++) {
-            if (addedNumber > this.maxNumber) {
-                addedNumber = this.minNumber;
+        int i = 0;
+        while (i < this.numberOfElements) {
+            int addedNumber = randomNumber();
+            if (mySet.add(addedNumber)) {
+                i++;
             }
-            mySet.add(addedNumber);
-            addedNumber += 1;
         }
         return mySet;
     }
