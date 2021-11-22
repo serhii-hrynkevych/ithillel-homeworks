@@ -19,13 +19,15 @@ public class Main {
         System.out.println("Задание 3");
         System.out.println(listArray);
         System.out.println(listLink);
-        ex3(listArray, listLink);
+        //ex3(listArray, listLink);
+        ex3ver2(listArray, listLink);
         System.out.println();
         System.out.println("***");
         System.out.println("Задание 4");
         System.out.println(listArray);
         System.out.println(listLink);
-        ex4(listArray, listLink);
+        //ex4(listArray, listLink);
+        ex4ver2(listArray, listLink);
         System.out.println();
         System.out.println("***");
         System.out.println("Задание 5");
@@ -82,6 +84,24 @@ public class Main {
         }
     }
 
+    public static void ex3ver2 (List<String> listArray, List<String> listLink) {
+        ListIterator<String> listIteratorEx3array = listArray.listIterator(listArray.size());
+        ListIterator<String> listIteratorEx3link = listLink.listIterator();
+        while (listIteratorEx3array.hasPrevious()) {
+            listIteratorEx3link.add(listIteratorEx3array.previous());
+            listIteratorEx3link.next();
+        }
+        System.out.println(listLink);
+
+        listIteratorEx3array = listArray.listIterator(listArray.size());
+        while (listIteratorEx3array.hasPrevious()) {
+            int indexRemove = Math.abs(((listIteratorEx3array.previousIndex() + 1) - listArray.size()));
+            listLink.remove(indexRemove);
+            listIteratorEx3array.previous();
+        }
+        System.out.println(listLink);
+    }
+
     public static void ex4 (List<String> listArray, List<String> listLink) {
         ListIterator<String> listIteratorEx4 = listArray.listIterator(listArray.size());
         int nextIndexAdd = 0;
@@ -91,6 +111,25 @@ public class Main {
                 nextIndexAdd +=3;
             } else {
                 listLink.add(listIteratorEx4.previous());
+            }
+        }
+        System.out.println(listLink);
+    }
+
+    public static void ex4ver2 (List<String> listArray, List<String> listLink) {
+        ListIterator<String> listIteratorEx4Array = listArray.listIterator(listArray.size());
+        ListIterator<String> listIteratorEx4link = listLink.listIterator();
+        while (listIteratorEx4Array.hasPrevious()) {
+            if (listIteratorEx4link.hasNext()) {
+                listIteratorEx4link.add(listIteratorEx4Array.previous());
+                if (listIteratorEx4link.hasNext()) {
+                    listIteratorEx4link.next();
+                }
+                if (listIteratorEx4link.hasNext()) {
+                    listIteratorEx4link.next();
+                }
+            } else {
+                listIteratorEx4link.add(listIteratorEx4Array.previous());
             }
         }
         System.out.println(listLink);
