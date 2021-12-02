@@ -14,17 +14,18 @@ public class Main {
         outputData(journal);
         System.out.println();
 
-        Set<String> uniqueEvents = selectionUniqueEvents(journal);
+        Journal journalClass = new Journal(journal);
+        Set<String> uniqueEvents = journalClass.selectionUniqueEvents();
 
         System.out.println("Для корреляции > 0.1 или < -0.1");
         for (String event : uniqueEvents) {
-            correlation(event, journal);
+            journalClass.correlation(event);
         }
         System.out.println();
 
         System.out.println("Для нового события");
-        addNewEvent(journal);
-        correlation("арахис-зубы", journal);
+        journalClass.addNewEvent();
+        journalClass.correlation("арахис-зубы");
     }
 
     public static List<DayJournal> gsonMethod(String filePath) {
@@ -41,66 +42,6 @@ public class Main {
     public static void outputData(List<DayJournal> journal) {
         for (DayJournal dayJournal : journal) {
             System.out.println(dayJournal);
-        }
-    }
-
-    public static Set<String> selectionUniqueEvents (List<DayJournal> journal) {
-        Set<String> events = new HashSet<>();
-        for (DayJournal day : journal) {
-            events.addAll(day.getEvents());
-        }
-        return events;
-    }
-
-    public static void correlation (String event, List<DayJournal> journal) {
-        int [] countUniqueEvents = countNewUniqueEvent(event, journal);
-        double kor = kor(countUniqueEvents);
-        outputKor(event, kor);
-    }
-
-    public static int[] countNewUniqueEvent(String event, List<DayJournal> journal) {
-        int[] table = new int[4];
-        for (DayJournal day : journal) {
-            boolean includesEvent = includesEvent(event, day.getEvents());
-            if (!includesEvent && !day.isSquirrel()) {
-                table[0]++;
-            }
-            if (includesEvent && !day.isSquirrel()) {
-                table[1]++;
-            }
-            if (!includesEvent && day.isSquirrel()) {
-                table[2]++;
-            }
-            if (includesEvent && day.isSquirrel()) {
-                table[3]++;
-            }
-        }
-        return table;
-    }
-
-    private static boolean includesEvent(String event, List<String> day) {
-        return day.contains(event);
-    }
-
-    public static double kor(int[] countUniqueEvents) {
-        int tabl0 = countUniqueEvents[0];
-        int tabl1 = countUniqueEvents[1];
-        int tabl2 = countUniqueEvents[2];
-        int tabl3 = countUniqueEvents[3];
-        return (tabl3 * tabl0 - tabl2 * tabl1) / Math.sqrt((tabl2 + tabl3) * (tabl0 + tabl1) * (tabl1 + tabl3) * (tabl0 + tabl2));
-    }
-
-    public static void outputKor(String event, double kor) {
-        if (-0.1 > kor || kor > 0.1) {
-            System.out.println(event + " = " + kor);
-        }
-    }
-
-    public static void addNewEvent(List<DayJournal> journal) {
-        for (DayJournal day : journal) {
-            if (includesEvent("ел арахис", day.getEvents()) && !includesEvent("чистил зубы", day.getEvents())) {
-                day.setEvents("арахис-зубы");
-            }
         }
     }
 }
