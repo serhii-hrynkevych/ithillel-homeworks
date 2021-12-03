@@ -5,7 +5,10 @@ import java.util.List;
 import java.util.Set;
 
 public class Journal {
-    private final List<DayJournal> journal;
+    private List<DayJournal> journal;
+
+    public Journal() {
+    }
 
     public Journal(List<DayJournal> journal) {
         this.journal = journal;
