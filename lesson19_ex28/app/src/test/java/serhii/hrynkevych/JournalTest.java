@@ -38,14 +38,14 @@ class JournalTest {
     }
 
     @Test
-    void correlation() {
+    void testCorrelation() {
         String resultExpected = journalTesting.correlation("чистил зубы");
 
         assertEquals("чистил зубы = -0.3805211953235953", resultExpected);
     }
 
     @Test
-    void countNewUniqueEvent() {
+    void testCountNewUniqueEvent() {
         int[] resultExpected = new int[] {78, 7, 5, 0};
 
         int[] table = journalTesting.countNewUniqueEvent("ел салат");
@@ -54,7 +54,7 @@ class JournalTest {
     }
 
     @Test
-    void kor() {
+    void testKor() {
         Journal journal = new Journal();
         int[] table = new int[]{85, 0, 0, 5};
         double resultExpected = journal.kor(table);
@@ -63,11 +63,17 @@ class JournalTest {
     }
 
     @Test
-    void outputKor() {
+    void testOutputKor() {
         Journal journalTesting = new Journal();
 
         String outputKorExpected = journalTesting.outputKor("пил пиво", 0.00003);
 
         assertNull(outputKorExpected);
+    }
+
+    @Test
+    void testGsonMethod() {
+        List<DayJournal> journals = Main.gsonMethod("C:\\java\\homeworks\\lesson19_ex28\\app\\src\\main\\resources\\journal_ru.json");
+        assertEquals(90, journals.size());
     }
 }
