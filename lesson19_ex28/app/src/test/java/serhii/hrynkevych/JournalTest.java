@@ -2,6 +2,7 @@ package serhii.hrynkevych;
 
 import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.FileReader;
@@ -15,32 +16,22 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class JournalTest {
 
-    @BeforeAll
-    static void setUp() {
+    private Journal journalTesting;
+
+    @BeforeEach
+    void setUp() {
         String filePath = "C:\\java\\homeworks\\lesson19_ex28\\app\\src\\main\\resources\\journal_ru.json";
-        List<DayJournal> journalTest = new ArrayList<>();
         Gson gson = new Gson();
         try (Reader reader = new FileReader(filePath)) {
-            journalTest = Arrays.asList(gson.fromJson(reader, DayJournal[].class));
+            List<DayJournal> journalTest = Arrays.asList(gson.fromJson(reader, DayJournal[].class));
+            journalTesting = new Journal(new ArrayList<>(journalTest));
         } catch (IOException e) {
             System.out.println("Error while opening the file");
         }
-        Journal journalTesting = new Journal(journalTest);
     }
 
     @Test
     void testSelectionUniqueEvents() {
-        //Я так и непонял как, и не смог получить доступ в журналу, созданному до всех тестов
-        String filePath = "C:\\java\\homeworks\\lesson19_ex28\\app\\src\\main\\resources\\journal_ru.json";
-        List<DayJournal> journalTest = new ArrayList<>();
-        Gson gson = new Gson();
-        try (Reader reader = new FileReader(filePath)) {
-            journalTest = Arrays.asList(gson.fromJson(reader, DayJournal[].class));
-        } catch (IOException e) {
-            System.out.println("Error while opening the file");
-        }
-        Journal journalTesting = new Journal(journalTest);
-
         int sizeUniqueEvents = journalTesting.selectionUniqueEvents().size();
 
         assertEquals(26, sizeUniqueEvents);
@@ -48,17 +39,6 @@ class JournalTest {
 
     @Test
     void correlation() {
-        //Я так и непонял как, и не смог получить доступ в журналу, созданному до всех тестов
-        String filePath = "C:\\java\\homeworks\\lesson19_ex28\\app\\src\\main\\resources\\journal_ru.json";
-        List<DayJournal> journalTest = new ArrayList<>();
-        Gson gson = new Gson();
-        try (Reader reader = new FileReader(filePath)) {
-            journalTest = Arrays.asList(gson.fromJson(reader, DayJournal[].class));
-        } catch (IOException e) {
-            System.out.println("Error while opening the file");
-        }
-        Journal journalTesting = new Journal(journalTest);
-
         String resultExpected = journalTesting.correlation("чистил зубы");
 
         assertEquals("чистил зубы = -0.3805211953235953", resultExpected);
@@ -66,17 +46,6 @@ class JournalTest {
 
     @Test
     void countNewUniqueEvent() {
-        //Я так и непонял как, и не смог получить доступ в журналу, созданному до всех тестов
-        String filePath = "C:\\java\\homeworks\\lesson19_ex28\\app\\src\\main\\resources\\journal_ru.json";
-        List<DayJournal> journalTest = new ArrayList<>();
-        Gson gson = new Gson();
-        try (Reader reader = new FileReader(filePath)) {
-            journalTest = Arrays.asList(gson.fromJson(reader, DayJournal[].class));
-        } catch (IOException e) {
-            System.out.println("Error while opening the file");
-        }
-        Journal journalTesting = new Journal(journalTest);
-
         int[] resultExpected = new int[] {78, 7, 5, 0};
 
         int[] table = journalTesting.countNewUniqueEvent("ел салат");
