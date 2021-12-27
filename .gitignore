@@ -3,4 +3,13 @@ out
 *.iml
 *.csv
 target
-test
+
+//test
+.gradle
+gradle
+build
+.gitattributes
+.gitignore
+settings.gradle
+gradlew
+gradlew.bat
