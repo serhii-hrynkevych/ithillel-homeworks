@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class ClassList {
+public class ListClassInfo {
     private final List<ClassInfo> classInfoList = new ArrayList<>();
     private int size = 0;
 
-    public ClassList() {
+    public ListClassInfo() {
     }
 
     public void addClassInfo(ClassInfo classInfo) {
